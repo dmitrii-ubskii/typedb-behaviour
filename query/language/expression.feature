@@ -512,46 +512,51 @@ Feature: TypeQL Query with Expressions
       | in                 | out                              |
       | value:<type>:<val> | value:<output-type>:<output-val> |
     Examples:
-      | function | type    | val      | output-type | output-val |
-      | abs      | integer | 6        | integer     | 6          |
-      | abs      | integer | 0        | integer     | 0          |
-      | abs      | integer | -1       | integer     | 1          |
-      | abs      | double  | 6.4      | double      | 6.4        |
-      | abs      | double  | 0.0      | double      | 0.0        |
-      | abs      | double  | -1.3     | double      | 1.3        |
-      | ceil     | double  | 11.0     | integer     | 11         |
-      | ceil     | double  | 11.5     | integer     | 12         |
-      | ceil     | double  | 12.5     | integer     | 13         |
-      | ceil     | double  | -11.5    | integer     | -11        |
-      | ceil     | double  | -12.5    | integer     | -12        |
-      | floor    | double  | 11.0     | integer     | 11         |
-      | floor    | double  | 11.5     | integer     | 11         |
-      | floor    | double  | 12.5     | integer     | 12         |
-      | floor    | double  | -11.5    | integer     | -12        |
-      | floor    | double  | -12.5    | integer     | -13        |
-      | round    | double  | 11.0     | integer     | 11         |
-      | round    | double  | 11.5     | integer     | 12         |
-      | round    | double  | 12.5     | integer     | 12         |
-      | round    | double  | -11.5    | integer     | -12        |
-      | round    | double  | -12.5    | integer     | -12        |
-      | abs      | decimal | 6.4dec   | decimal     | 6.4dec     |
-      | abs      | decimal | 0.0dec   | decimal     | 0.0dec     |
-      | abs      | decimal | -1.3dec  | decimal     | 1.3dec     |
-      | ceil     | decimal | 11.0dec  | integer     | 11         |
-      | ceil     | decimal | 11.5dec  | integer     | 12         |
-      | ceil     | decimal | 12.5dec  | integer     | 13         |
-      | ceil     | decimal | -11.5dec | integer     | -11        |
-      | ceil     | decimal | -12.5dec | integer     | -12        |
-      | floor    | decimal | 11.0dec  | integer     | 11         |
-      | floor    | decimal | 11.5dec  | integer     | 11         |
-      | floor    | decimal | 12.5dec  | integer     | 12         |
-      | floor    | decimal | -11.5dec | integer     | -12        |
-      | floor    | decimal | -12.5dec | integer     | -13        |
-      | round    | decimal | 11.0dec  | integer     | 11         |
-      | round    | decimal | 11.5dec  | integer     | 12         |
-      | round    | decimal | 12.5dec  | integer     | 12         |
-      | round    | decimal | -11.5dec | integer     | -12        |
-      | round    | decimal | -12.5dec | integer     | -12        |
+      | function | type    | val             | output-type | output-val |
+      | abs      | integer | 6               | integer     | 6          |
+      | abs      | integer | 0               | integer     | 0          |
+      | abs      | integer | -1              | integer     | 1          |
+      | abs      | double  | 6.4             | double      | 6.4        |
+      | abs      | double  | 0.0             | double      | 0.0        |
+      | abs      | double  | -1.3            | double      | 1.3        |
+      | ceil     | double  | 11.0            | integer     | 11         |
+      | ceil     | double  | 11.5            | integer     | 12         |
+      | ceil     | double  | 12.5            | integer     | 13         |
+      | ceil     | double  | -11.5           | integer     | -11        |
+      | ceil     | double  | -12.5           | integer     | -12        |
+      | floor    | double  | 11.0            | integer     | 11         |
+      | floor    | double  | 11.5            | integer     | 11         |
+      | floor    | double  | 12.5            | integer     | 12         |
+      | floor    | double  | -11.5           | integer     | -12        |
+      | floor    | double  | -12.5           | integer     | -13        |
+      | round    | double  | 11.0            | integer     | 11         |
+      | round    | double  | 11.5            | integer     | 12         |
+      | round    | double  | 12.5            | integer     | 12         |
+      | round    | double  | -11.5           | integer     | -12        |
+      | round    | double  | -12.5           | integer     | -12        |
+      | abs      | decimal | 6.4dec          | decimal     | 6.4dec     |
+      | abs      | decimal | 0.0dec          | decimal     | 0.0dec     |
+      | abs      | decimal | -1.3dec         | decimal     | 1.3dec     |
+      | ceil     | decimal | 11.0dec         | integer     | 11         |
+      | ceil     | decimal | 11.5dec         | integer     | 12         |
+      | ceil     | decimal | 12.5dec         | integer     | 13         |
+      | ceil     | decimal | -11.5dec        | integer     | -11        |
+      | ceil     | decimal | -12.5dec        | integer     | -12        |
+      | floor    | decimal | 11.0dec         | integer     | 11         |
+      | floor    | decimal | 11.5dec         | integer     | 11         |
+      | floor    | decimal | 12.5dec         | integer     | 12         |
+      | floor    | decimal | -11.5dec        | integer     | -12        |
+      | floor    | decimal | -12.5dec        | integer     | -13        |
+      | round    | decimal | 11.0dec         | integer     | 11         |
+      | round    | decimal | 11.5dec         | integer     | 12         |
+      | round    | decimal | 12.5dec         | integer     | 12         |
+      | round    | decimal | -11.5dec        | integer     | -12        |
+      | round    | decimal | -12.5dec        | integer     | -12        |
+      | len      | string  | ""              | integer     | 0          |
+      | len      | string  | "Hello, world!" | integer     | 13         |
+      | len      | string  | "こんにちは"    | integer     | 5          |
+      | len      | string  | "❤️‍🔥"               | integer     | 4          |
+      | len      | string  | "⭐"            | integer     | 1          |
 
 
   Scenario Outline: test intrinsic unary function <function> when applied to <type> produces correct result
@@ -562,10 +567,13 @@ Feature: TypeQL Query with Expressions
         let $a = <function>(<val>);
       """
     Examples:
-      | function | type    | val |
-      | ceil     | integer | 0   |
-      | floor    | integer | 0   |
-      | round    | integer | 0   |
+      | function | type    | val      |
+      | ceil     | integer | 0        |
+      | floor    | integer | 0        |
+      | round    | integer | 0        |
+      | len      | integer | 0        |
+      | len      | double  | 0.0      |
+      | len      | decimal | 0.0dec   |
 
 
   Scenario: Test operators on variables
@@ -877,3 +885,58 @@ Feature: TypeQL Query with Expressions
       | a                  | b                | c                  |
       | value:double:65536 | value:double:256 | value:double:65536 |
 
+
+  Scenario: Test built-in functions accepting concepts
+    Given connection open write transaction for database: typedb
+    Given typeql write query
+    """
+    insert $p isa person, has name "Lisa", has age 10, has height 180;
+    """
+    Given transaction commits
+
+    Given connection open read transaction for database: typedb
+    When get answers of typeql read query
+    """
+      match
+        $_ isa $t;
+        let $label = label($t);
+      select
+        $label;
+      """
+    Then uniquely identify answer concepts
+      | label               |
+      | value:string:person |
+      | value:string:name   |
+      | value:string:age    |
+      | value:string:height |
+
+    When get answers of typeql read query
+    """
+    match $x isa $_;
+    """
+    Then each answer satisfies
+    """
+    match $x iid <answer.x.iid>; iid($x) == "<answer.x.iid>";
+    """
+
+  Scenario: Test role label includes relation namespace
+    Given connection open schema transaction for database: typedb
+    Given typeql schema query
+      """
+      define
+      relation rel, relates rolename;
+      """
+    Given transaction commits
+
+    Given connection open read transaction for database: typedb
+    When get answers of typeql read query
+    """
+      match
+        $_ relates $r;
+        let $label = label($r);
+      select
+        $label;
+      """
+    Then uniquely identify answer concepts
+      | label                     |
+      | value:string:rel:rolename |
