@@ -11,8 +11,13 @@ checkstyle_test(
         ".gitignore",
         ".factory/*",
         "BUILD",
+        "MODULE.bazel",
         "WORKSPACE",
     ]),
+    exclude = [
+        ".claude/settings.local.json",
+        "MODULE.bazel.lock",
+    ],
     license_type = "mpl-header",
 )
 
