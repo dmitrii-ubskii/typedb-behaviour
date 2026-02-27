@@ -8,12 +8,32 @@ module(
     compatibility_level = 1,
 )
 
-# Core BCR dependencies
-bazel_dep(name = "bazel_skylib", version = "1.7.1")
-bazel_dep(name = "rules_python", version = "1.0.0")
-bazel_dep(name = "rules_kotlin", version = "2.0.0")
+# ===========================================================
+# Common
+# ===========================================================
 
-# typedb ecosystem dependencies
+bazel_dep(name = "bazel_skylib", version = "1.7.1")
+
+# ===========================================================
+# Languages & toolchains
+# ===========================================================
+
+# Python
+bazel_dep(name = "rules_python", version = "1.0.0")
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(
+    is_default = True,
+    python_version = "3.11",
+)
+
+# Kotlin
+bazel_dep(name = "rules_kotlin", version = "2.0.0")
+register_toolchains("@rules_kotlin//kotlin/internal:default_toolchain")
+
+# ===========================================================
+# TypeDB repos
+# ===========================================================
+
 bazel_dep(name = "typedb_dependencies", version = "0.0.0")
 git_override(
     module_name = "typedb_dependencies",
@@ -27,13 +47,3 @@ git_override(
     remote = "https://github.com/typedb/bazel-distribution",
     commit = "9796c9454b766c453456c8c0498dd67569db310e",
 )
-
-# Python toolchain (required for checkstyle)
-python = use_extension("@rules_python//python/extensions:python.bzl", "python")
-python.toolchain(
-    is_default = True,
-    python_version = "3.11",
-)
-
-# Register Kotlin toolchain (required for checkstyle)
-register_toolchains("@rules_kotlin//kotlin/internal:default_toolchain")
