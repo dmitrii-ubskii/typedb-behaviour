@@ -15,7 +15,6 @@ checkstyle_test(
         "WORKSPACE",
     ]),
     exclude = [
-        ".claude/settings.local.json",
         "MODULE.bazel.lock",
     ],
     license_type = "mpl-header",
